@@ -6,11 +6,15 @@ package com.wzystal.day0710;
  * @author wzystal
  */
 public class Solution {
-	public int singleNumber(int[] A) {
+	public int singleNumber1(int[] A) {
 		int x = 0;
 		for (int i : A) {
 			x = x ^ i;
 		}
 		return x;
+	}
+	
+	public int singleNumber(int[] A){
+		return -1;
 	}
 }
