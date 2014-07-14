@@ -6,15 +6,35 @@ package com.wzystal.day0710;
  * @author wzystal
  */
 public class Solution {
-	public int singleNumber1(int[] A) {
-		int x = 0;
+	//Given an array of integers, every element appears twice except for one. Find that single one.
+	//时间复杂度O(N),空间复杂度O(1)
+	public int singleNumber2(int[] A) {
+		int result = 0;
 		for (int i : A) {
-			x = x ^ i;
+			result ^= i;
 		}
-		return x;
+		return result;
+	}
+
+	//Given an array of integers, every element appears three times except for one. Find that single one.
+	//时间复杂度O(N),空间复杂度O(N)
+	public static int singleNumber3(int[] A) {
+		if (A.length == 0)
+			return 0;
+		int[] bits = new int[32];
+		int result = 0;
+		for (int i = 0; i < 32; i++) {
+			for (int j = 0; j < A.length; j++) {
+				if (((A[j] >> i) & 1) == 1) {
+					bits[i] = (bits[i] + 1) % 3;
+				}
+			}
+			result |= (bits[i] << i);
+		}
+		for(int b : bits){
+			System.out.print(b);
+		}
+		return result;
 	}
 	
-	public int singleNumber(int[] A){
-		return -1;
-	}
 }
